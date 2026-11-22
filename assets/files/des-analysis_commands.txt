@@ -1,0 +1,54 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 178-374 (= references/tutorial-5.md:186-382; the mirror adds 8 frontmatter lines) | verbatim single lines, mirror line number given above each
+# shows: EVERY DES analysis / summary / plot command line the tutorial prints - this is the complete documented PyRateDES.py command surface
+# gotcha: line 314 is malformed in the source (the covariate directory has no -varE in front of it); kept exactly as printed
+
+# tutorial-5.md:186 - basic DES analysis, constant rates (Bayesian default -A 0)
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt
+
+# tutorial-5.md:194 - same model, longer chain: -n 500000 -s 1000 -p 10000
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -n 500000 -s 1000 -p 10000
+
+# tutorial-5.md:200 - same model by maximum likelihood, -A 3 (needs python library nlopt)
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -A 3
+
+# tutorial-5.md:206 - summarise the Bayesian output log: -sum <file>.log
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -sum ./example_files/DES_examples/Carnivora/Carnivora_1_0.log
+
+# tutorial-5.md:216 - sampling heterogeneity across taxa: -mG (default -ncat 4)
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -mG
+
+# tutorial-5.md:226 - skyline model with rate shifts: -TdD -TdE -mG -qtimes <ages> (note DESCENDING order here)
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -TdD -TdE -mG -qtimes 20.43 15.97 13.65 11.63 7.25 5.33 2.58 -n 1000001 -s 1000 -p 1000
+
+# tutorial-5.md:251 - covariate-dependent dispersal and extinction: -varD <dir> -varE <dir>
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -varD ./example_files/DES_examples/Carnivora/covariate_dispersal -varE ./example_files/DES_examples/Carnivora/covariate_extinction
+
+# tutorial-5.md:257 - area-specific covariates: two paths after -varE (area 1 then area 2)
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -varE ./example_files/DES_examples/Carnivora/covariate_eurasia ./example_files/DES_examples/Carnivora/covariate_northamerica
+
+# tutorial-5.md:277 - diversity-dependent dispersal and extinction: -DivdD -DivdE
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -DivdD -DivdE
+
+# tutorial-5.md:304 - trait-dependent dispersal (continuous trait): -traitD <file>
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -traitD ./example_files/DES_examples/Carnivora/Body_mass_1.txt
+
+# tutorial-5.md:314 - trait + environmental covariate combined, AS PRINTED (missing flag before covariate_extinction)
+python ./PyRateDES.py -d .../example_files/DES_examples/Carnivora/Carnivora_1.txt ./example_files/DES_examples/Carnivora/covariate_extinction -traitD .../example_files/DES_examples/Carnivora/Body_mass_1.txt
+
+# tutorial-5.md:328 - categorical trait effect: -catD <file>
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -catD ./example_files/DES_examples/Carnivora/FamilyGenera.txt
+
+# tutorial-5.md:341 - summarise with burn-in: -sum <file>.log -b 1000
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -sum ./example_files/DES_examples/Carnivora/Carnivora_1_0.log -b 1000
+
+# tutorial-5.md:349 - plot rates through time from marginal_rates.log: -plot <file> -b 200 -plotCI 0.75 0.95
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -TdD -TdE -qtimes 2.58 5.33 7.25 11.63 13.65 15.97 20.43 -mG -plot ./example_files/DES_examples/Carnivora/Carnivora_1_0_q_2.58_5.33_7.25_11.63_13.65_15.97_20.43_TdD_TdE_marginal_rates.log -b 200 -plotCI 0.75 0.95
+
+# tutorial-5.md:361 - the model of line 349, inferred (qtimes ASCENDING here)
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -TdD -TdE -qtimes 2.58 5.33 7.25 11.63 13.65 15.97 20.43 -mG -n 1000001 -s 1000 -p 1000
+
+# tutorial-5.md:368 - plot covariate / diversity / trait effects from the model log
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -TdD -traitD ./example_files/DES_examples/Carnivora/Body_mass_1.txt -catD ./example_files/DES_examples/Carnivora/FamilyGenera.txt -varE ./example_files/DES_examples/Carnivora/covariate_extinction -qtimes 2.58 5.33 7.25 11.63 13.65 15.97 20.43 -mG -plot ./example_files/DES_examples/Carnivora/Carnivora_1_0_q_2.58_5.33_7.25_11.63_13.65_15.97_20.43_TdD_Eexp_constr_0_1_TraitD_CatD_G.log -b 200
+
+# tutorial-5.md:382 - the model of line 368, inferred (adds -constr 1 2)
+python ./PyRateDES.py -d ./example_files/DES_examples/Carnivora/Carnivora_1.txt -TdD -constr 1 2 -traitD ./example_files/DES_examples/Carnivora/Body_mass_1.txt -catD ./example_files/DES_examples/Carnivora/FamilyGenera.txt -varE ./example_files/DES_examples/Carnivora/covariate_extinction -qtimes 2.58 5.33 7.25 11.63 13.65 15.97 20.43 -mG -n 1000001 -s 1000 -p 1000

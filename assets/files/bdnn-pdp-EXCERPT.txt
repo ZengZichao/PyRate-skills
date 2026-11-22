@@ -1,0 +1,8 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:322-325 (the *_pdp.csv
+#   table); pipe syntax rewritten as tabs, values unchanged -- not verbatim mirror text.
+# shows: partial dependence rates for two predictors (-BDNN_groups), columns named after
+#   them (tutorial-bdnn.md:320).
+
+BodyMass	Temperature	time	mean	lwr	upr
+-0.73	10.73	0.5	0.16	0.16	0.11	0.25
+-0.52	11.13	16.05	0.47	0.35	0.67

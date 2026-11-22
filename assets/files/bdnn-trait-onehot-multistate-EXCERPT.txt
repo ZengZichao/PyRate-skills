@@ -1,0 +1,9 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:152-156 (the Eurasia /
+#   NAmerica one-hot table, where one taxon carries both states); pipe syntax rewritten as
+#   tabs, values unchanged -- not verbatim mirror text.
+# shows: one-hot encoding of an unordered multi-state trait (tutorial-bdnn.md:150).
+
+scientificName	Eurasia	NAmerica
+Acinonyx	1	0
+Actiocyon	0	1
+Agriotherium	1	1

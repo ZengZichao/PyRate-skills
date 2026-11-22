@@ -1,0 +1,134 @@
+# tuning-knobs-command-lines.txt
+# Provenance: every FLAG and every VALUE below is copied from a printed example line in this skill's
+#   mirrors (references/tutorial-6.md = the Advanced settings page; references/command-list.md = the
+#   command list). The SCAFFOLDING is composed by the skill author: the mirrors print two complete
+#   invocations only - `python PyRate.py path_to_input_file/Ursidae_PyRate.py` (command-list.md:15)
+#   and `python PyRate.py -d path_to_input_file/Ursidae_SE.txt` (command-list.md:20) - and one bare
+#   flag example per knob. Section 0 below reproduces those two invocations verbatim; every other
+#   line joins that documented shape to the documented flag examples. Nothing else is invented.
+# Runnable: NO runnable command line - executing any line needs a PyRate installation and a real
+#   occurrence input file, neither of which is in this repo (there is no PyRate.py anywhere under the
+#   suite root). The last line of this file is the offline check you can run instead.
+# Shows: one representative tuning command line per knob, exactly as the docs define that knob.
+# Caveat: each knob has only ONE printed value in the docs - its default. Any other value is the
+#   user's choice and is NOT documented anywhere in this corpus (no range, no step, no target
+#   acceptance rate). Quoted citations below, grep them before trusting one.
+
+--------------------------------------------------------------------------------
+# 0. The two invocations the mirrors print verbatim
+--------------------------------------------------------------------------------
+python PyRate.py path_to_input_file/Ursidae_PyRate.py
+    # command-list.md:15 - input file with occurrences "as list of Numpy arrays" (command-list.md:13)
+python PyRate.py -d path_to_input_file/Ursidae_SE.txt
+    # command-list.md:20 - known origination/extinction times; "This option automatically sets
+    # -fixSE = null" (command-list.md:18), so nothing here is being tuned by the sampler
+
+--------------------------------------------------------------------------------
+# 1. Fast burnin - tutorial-6.md:13-14 (ABSENT from command-list.md: grep -c fast_burnin -> 0)
+#    "Specify number of MCMC iterations using approximate Gibbs sampler for times of origination
+#     and extinction for faster convergence (default: `-fast_burnin 0`)"
+--------------------------------------------------------------------------------
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -fast_burnin 0
+    # 0 = documented default (tutorial-6.md:14) => plain MHMCMC from the first generation
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -A 2 -n 10000000 -s 1000 -b 0 \
+    -fast_burnin 0
+    # -n 10000000 (command-list.md:58), -s 1000 (command-list.md:62), -b 0 (command-list.md:71),
+    # -A 2 (command-list.md:52, default). The corpus gives NO non-zero example value.
+
+--------------------------------------------------------------------------------
+# 2. The ten "Tuning parameters" (tutorial-6.md:17-55, repeated at command-list.md:230-269)
+#    "### Tuning parameters" occurs exactly twice in this skill's four mirrors (tutorial-6.md:17,
+#    command-list.md:230). The command-list page is mirrored in six other skills too, so those ten
+#    knobs have no unique source page - but -fast_burnin does: run from the suite root,
+#    grep -rn "^### Tuning parameters" . --include="*.md" | wc -l   -> 7
+#    grep -rl fast_burnin . --include="*.md"                        -> tutorial-6.md, tutorial-6-cn.md
+#      plus five SKILL.md cross-references; NOT one command-list*.md mirror of any skill.
+--------------------------------------------------------------------------------
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -multiR 1
+    # tutorial-6.md:18-19. "-multiR <boolean>": 0 = sliding window, 1 = multiplier proposals
+    # (default). Moves speciation and extinction RATES.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -tT 1
+    # tutorial-6.md:21-23. "-tT <float>", window size of updates of speciation/extinction TIMES
+    # (uniform sliding window).
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -nT 5
+    # tutorial-6.md:25-27. Max number of speciation/extinction times updated at a time. WARNING
+    # (tutorial-6.md:26): "-nT 0" is a MODEL change, not a tuning change - times = first/last
+    # appearances "and the preservation model is automatically set to HPP".
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -tQ 1.2 1.2
+    # tutorial-6.md:29-31. Two values: preservation rate q, then alpha (shape of the gamma
+    # distributed rate heterogeneity), multiplier proposals. alpha only exists under -mG.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -mG -tQ 1.2 1.2
+    # the same knob with the heterogeneity parameter actually present (command-list.md:95-98 -mG,
+    # command-list.md:100-102 -ncat 4 default "used only when ... (i.e. with -mG)")
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -tR 0.05
+    # tutorial-6.md:33-35. Window size of updates of speciation/extinction rates; the mirror prints
+    # "(by default multiplier proposals, see also [`-multiR`](...))" - so -tR ALSO sets the
+    # SLIDING-WINDOW size when -multiR 0 (tutorial-6.md:19: "Window sizes can be adjusted using
+    # `-tR`").
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -mL 2 -mM 2 -tS 1
+    # tutorial-6.md:37-39 for -tS; the pair "-mL 2" / "-mM 2" is printed verbatim at
+    # command-list.md:120 (its own example lines are -mL 2 at :113 and -mM 3 at :117). -mL/-mM set the
+    # NUMBER of rates with -A 0/-A 1, and only the starting number with -A 2 (command-list.md:112,:116).
+    # -tS = window size of SHIFT TIME updates.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -fS 0.7
+    # tutorial-6.md:41-43. Frequency of updating shift times when birth-death parameters are
+    # updated (else rates are updated). Auto-set to 0 "when no rate shifts are being sampled or if
+    # the times of shifts are fixed" -> a silent no-op under -mL 1 / -mM 1 / -fixSE.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -fixSE path_to_file/Ursidae.mcmc.log -fS 0.7
+    # the no-op case: command-list.md:104-106 fixes SE times from an earlier mcmc.log, and
+    # tutorial-6.md:42 forces -fS to 0; the whole run then samples birth-death parameters only.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -mCov 3 -tC 0.025 0.025 0.1
+    # tutorial-6.md:45-47 + command-list.md:137-144. Three windows: covariation with speciation,
+    # extinction, preservation; which are updated depends on -mCov (command-list.md:138).
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -mCov 3 -fU 0.02 0.18 0.08
+    # tutorial-6.md:49-51. Update frequencies for preservation, birth-death and Covar parameters;
+    # "What is left is used for updating speciation and extinction times" -> remainder 0.72.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -mL 5 -mM 5 -fR 1
+    # tutorial-6.md:53-55. Fraction of birth-death rates updated at a time (frequency from -fU).
+    # The only knob the docs tie to a named symptom: reduce it "when running birth-death models
+    # with many shifts ... to improve the MCMC mixing".
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -fixShift path_to_file/epochs.txt -fR 1 \
+    -cauchy 0 0
+    # command-list.md:123-125 (-fixShift: number+ages of shifts fixed, identical for speciation and
+    # extinction, and it "will automatically switch the priors ... into half-Cauchy"); the paired
+    # -cauchy 0 0 is that automatic setting (command-list.md:175-176). This is the documented use
+    # case for both -fR and a longer run.
+
+--------------------------------------------------------------------------------
+# 3. "Advanced (BD)MCMC settings" - command-list.md:192-227 ONLY (tutorial-6.md:0 matches).
+#    Gate conditions are printed per command; the corpus does not say what happens if you violate
+#    them (see SKILL.md hazard on silent no-ops).
+--------------------------------------------------------------------------------
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -A 0 -r 4 -t 0.03 -sw 100
+    # command-list.md:193-203. -r = number of MC3 chains INCLUDING the cold one, "used only when
+    # running MCMC analysis for parameter estimation (i.e. with -A 0)"; -t temperature and -sw swap
+    # frequency are "used only when running MC3 analysis (i.e. with -r >1)".
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -A 1 -k 10 -a 0.3 -b 1000
+    # command-list.md:205-211 + :69. TI: -k scaling points ("Higher number ... will improve the
+    # accuracy of the estimated marginal likelihood, but require longer computational time"),
+    # -a beta shape; -b is the "must be set to a reasonable number" marginal-likelihood rule.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -A 2 -M 25 -B 1 -T 1
+    # command-list.md:213-223. BDMCMC: -M model-update frequency ("Reducing this number can improve
+    # the sampling of the number of shifts"), -B proposal birth-rate = Poisson prior shape on the
+    # number of rates, -T time spent updating the model ("similar effect to increasing ... -B").
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -A 2 -S 1000 -M 25
+    # command-list.md:225-227: generations after which BDMCMC starts updating the model, "(e.g.
+    # after a burn-in phase)". NOTE command-list.md:227 prints "Example: `-S 1000`" WITHOUT the
+    # "(default)" tag that every neighbour carries, so 1000 is an example, not a documented default.
+
+--------------------------------------------------------------------------------
+# 4. Burnin / sampling interaction lines (command-list.md:56-73; -b also drives summarisation)
+--------------------------------------------------------------------------------
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -n 10000000 -s 1000 -p 1000 -b 1000
+    # command-list.md:58, :62, :66, :72. 10,000 logged rows over 10M generations at -s 1000; with
+    # -b 1000 "first 1,000 samples are discarded".
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -n 10000000 -s 1000 -b 0.10
+    # command-list.md:73 "(the first 10% of the samples are discarded)": -b between 0 and 1 is a
+    # FRACTION of total generations, not a count.
+python PyRate.py path_to_input_file/Ursidae_PyRate.py -n 10000000 -s 1000 -out run_2 -j 1 \
+    -thread 0 0
+    # command-list.md:35 (-out avoids overwriting output when running several instances - the
+    # cheap way to keep replicate chains apart), :30 (-j 1 default dataset), :78 (-thread 0 0
+    # default, sequential likelihood).
+# Offline self-check for this file (re-run the corpus census):
+sh assets/files/tuning-term-frequency-audit.sh

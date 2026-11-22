@@ -1,0 +1,30 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_3.md line 55 (= references/tutorial-3.md:55) | derived
+# shows: the ONLY mcmc.log column names the RJMCMC tutorial spells out, one per line, as a vocabulary for writing -mProb / -col_tag / Tracer checks
+# CAUTION: this is NOT a header line. No PyRate log file layout is printed anywhere in this corpus -
+# the docs never show a row, a column order, or the exact spelling of the per-taxon time columns
+# (they say only "*_TS" and "*_TE"). Names below are copied from the prose; the "status" column says
+# where each is documented, and "only in -plotRJ prose" marks a name no other page of the wiki uses.
+# Verified with: grep -rn "<name>" */references/*.md  (from the suite root)
+#
+# name                status
+posterior             documented references/tutorial-3.md:55 (MCMC samples of the posterior)
+prior                 documented references/tutorial-3.md:55
+PP_lik                documented references/tutorial-3.md:55 (likelihood of the preservation process)
+BD_lik                documented references/tutorial-3.md:55 (likelihood of the birth-death process)
+q_rate                documented references/tutorial-3.md:55 (preservation rate)
+alpha                 documented references/tutorial-3.md:55 (shape of the gamma-distributed preservation heterogeneity)
+k_birth               documented references/tutorial-3.md:55 (number of sampled rate shifts, birth side)
+k_death               documented references/tutorial-3.md:55 (number of sampled rate shifts, death side)
+                      CONFLICT: ../pyrate-summarize-results/references/summarize-results.md:20 calls k_birth/k_death
+                      "only logged in BDMCMC analyses", i.e. NOT under -A 4 - the two pages disagree, so check
+                      your own log for the columns before trusting -mProb on an RJMCMC run
+root_age              documented references/tutorial-3.md:55 (time of origin of the oldest lineage)
+tot_length            documented references/tutorial-3.md:55 (total branch length)
+*_TS                  documented references/tutorial-3.md:55 "if estimated" (times of speciation of all taxa)
+*_TE                  documented references/tutorial-3.md:55 "if estimated" (times of extinction of all taxa)
+q_0, q_1, ... q_n     documented references/tutorial-3.md:55 (preservation rates between shifts, TPP model only, older to younger)
+death_age             only in -plotRJ prose, references/tutorial-3.md:110; NOT in the column list at :55 and used nowhere else in the corpus
+cov_sp, cov_ex, cov_q NOT in tutorial-3; listed for a general PyRate mcmc.log in ../pyrate-summarize-results/references/summarize-results.md:20
+lambda_0.. / mu_0..   NOT in tutorial-3; summarize-results.md:20 says they are "only logged under fixed number of shifts, i.e. with -A 0 or -A 1"
+shift_sp_1../shift_ex_1.. NOT in tutorial-3; summarize-results.md:20 says "only logged with -A 0 or -A 1"
+beta                  NOT in tutorial-3; summarize-results.md:20 says it is the TI scaling factor

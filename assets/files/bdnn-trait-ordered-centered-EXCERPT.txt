@@ -1,0 +1,12 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:161-168 (the
+#   scientificName / Ordered_trait table, centred on zero); pipe syntax rewritten as tabs,
+#   values unchanged -- not verbatim mirror text.
+# shows: integer encoding of a many-state ordered trait (tutorial-bdnn.md:159).
+
+scientificName	Ordered_trait
+Taxon_0	-2
+Taxon_1	-2
+Taxon_2	-1
+Taxon_3	0
+Taxon_4	1
+Taxon_5	2

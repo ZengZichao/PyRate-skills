@@ -1,0 +1,17 @@
+# provenance: synthesized by this suite as a worked example. The format is documented at
+#   pyrate-continuous-covariates/references/pyratecontinuous.md:32 (a table reporting the
+#   values of a variable and its times of change); the numbers are OURS.
+# shows: the time/value covariate a -c run reads.
+
+time	value
+0	14.2
+1	13.8
+2	13.1
+3	12.6
+4	11.9
+5	11.4
+6	10.8
+7	10.1
+8	9.8
+9	9.3
+10	8.9

@@ -1,0 +1,14 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_1.md lines 44-55 (= references/tutorial-1.md lines 52-63) | derived
+# shows: the tutorial's own occurrence table - header row Taxon_name/Status/MinAge/MaxAge (the column names the tutorial prints), one row per fossil occurrence, "extant" and "extinct" in the Status column
+# derived: markdown pipe table converted to true tab-delimited text and the doc's escaped underscores (Canis\_ferox) unescaped; no value changed. NB this header differs from the wiki page's Species/MinT/MaxT header - see SKILL.md "which column names"
+Taxon_name	Status	MinAge	MaxAge
+Canis_ferox	extinct	4.9	10.3
+Canis_lepophagus	extinct	4.9	10.3
+Canis_ferox	extinct	4.9	10.3
+Canis_ferox	extinct	4.9	10.3
+Canis_ferox	extinct	4.9	10.3
+Canis_edwardii	extinct	0.3	4.9
+Canis_armbrusteri	extinct	0.3	4.9
+Canis_latrans	extant	0.3	4.9
+Canis_latrans	extant	1.8	4.9
+Canis_thooides	extinct	1.8	4.9

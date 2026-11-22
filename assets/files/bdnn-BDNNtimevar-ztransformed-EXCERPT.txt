@@ -1,0 +1,14 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:180-188 (the z-transformed
+#   Time / Temperature / Prey table); pipe syntax rewritten as tabs, so the file is not a
+#   verbatim mirror span, while every value is the mirror's. The advice that continuous
+#   predictors 'should be z-transformed' is at tutorial-bdnn.md:126.
+# shows: a two-predictor z-transformed time-series file for -BDNNtimevar.
+
+Time	Temperature	Prey
+0.00	-1.16	-1.34
+0.09	-2.71	-0.52
+0.14	-3.39	-0.47
+0.33	-1.08	-0.01
+1.17	-1.44	0.23
+2.91	-0.77	0.68
+7.35	-0.22	1.19

@@ -1,0 +1,8 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 39-45 (= references/tutorial-5.md:47-53) | derived
+# shows: the DES recent-distribution table (scientificName, higherGeography) - one row per area, so Canis appears twice (tutorial-5.md:45 "if a taxon occurs in both areas in recent time, it needs a separate row for each area")
+scientificName	higherGeography
+Acinonyx	Eurasia
+Bassaricyon	NAmerica
+Bassariscus	NAmerica
+Canis	Eurasia
+Canis	NAmerica

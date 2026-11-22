@@ -1,0 +1,11 @@
+# provenance: synthesized by this suite as a worked example. The role of the file -- a
+#   -fixShift list of time-bin boundaries -- is documented at
+#   pyrate-bdnn/references/tutorial-bdnn.md:237-249 ('Replacing default 1-myr bins'), but
+#   this column of ages is OURS: no mirror prints these four numbers together, so the file
+#   is constructed, not a copy of anything upstream.
+# shows: one age per line, no header, descending (the format -fixShift reads).
+
+0.0117
+0.126
+0.781
+1.8

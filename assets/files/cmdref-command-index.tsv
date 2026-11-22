@@ -1,0 +1,55 @@
+# source: PyRate-doc/PyRate-wiki/2.-PyRate:-command-list.md lines 9-269 | derived
+# shows: every command the page prints - command, wiki section, EN mirror line, CN mirror line, arity (number of values shown by the page's own example line), documented default
+# derived: machine-generated index; regenerate with `python3 ../pyrate-command-reference/scripts/build_command.py --list` (EN@/CN@ are mirror line numbers, frontmatter included)
+command	section	EN_line	CN_line	arity	documented_default	values_printed_by_the_page
+<input file>	input files / working directory	12	13	1	not stated	path to the *_PyRate.py occurrence file
+-d	input files / working directory	17	18	1	not stated	path to a tab-separated origin/extinction table
+-wd	input files / working directory	22	23	1	not stated	path_to_target_directory
+-j	input files / working directory	27	28	1	1	int (replicate / data-set number)
+-out	input files / working directory	32	33	1	not stated	tag string
+-singleton	input files / working directory	37	38	1	not stated	1 | 2 | -1
+-A	main analysis settings	46	47	1	2	0 | 1 | 2 | 3
+-n	main analysis settings	56	57	1	10000000	int (generations)
+-s	main analysis settings	60	61	1	1000	int
+-p	main analysis settings	64	65	1	not stated	int
+-b	main analysis settings	68	69	1	0	int >= 1 (iterations) OR 0 < x < 1 (fraction of -n)
+-thread	main analysis settings	75	76	2	0 0	int int (birth-death, NHPP)
+-mHPP	preservation model	87	88	0	not stated	(switch)
+-qShift	preservation model	91	92	1	not stated	path to a file of epoch-boundary times
+-mG	preservation model	95	96	0	not stated	(switch)
+-ncat	preservation model	100	100	1	4	int
+-fixSE	preservation model	104	104	1	not stated	path to a *_mcmc.log file, or the literal word null
+-mL	birth-death constrained shifts	111	111	1	not stated	int
+-mM	birth-death constrained shifts	115	115	1	not stated	int
+-mC	birth-death constrained shifts	119	119	0	not stated	(switch)
+-fixShift	birth-death constrained shifts	123	123	1	not stated	path to a text file of shift ages
+-trait_file	trait-correlated rates (Covar)	132	132	1	not stated	path to a tab-separated Species/Trait table (NA allowed)
+-mCov	trait-correlated rates (Covar)	137	137	1	not stated	1 | 2 | 3 | 4 | 5
+-trait	trait-correlated rates (Covar)	146	146	1	1	int (trait number)
+-logT	trait-correlated rates (Covar)	150	150	1	2	0 | 1 | 2
+-N	(hyper)prior settings	162	162	1	-1 (gamma prior route)	int >= 0, or -1
+-pL	(hyper)prior settings	166	166	2	1.1 1.1	float float (shape scale)
+-pM	(hyper)prior settings	170	170	2	not stated	float float (shape scale)
+-cauchy	(hyper)prior settings	174	174	2	-1 -1	float float (-1 -1 | 0 0 | x y > 0)
+-pP	(hyper)prior settings	178	177	2	1.5 1	float float (shape scale)
+-pS	(hyper)prior settings	182	181	1	2.5	float
+-pC	(hyper)prior settings	186	185	1	1	float >= 0
+-r	advanced (BD)MCMC settings	193	192	1	not stated	int (chains, cold chain included)
+-t	advanced (BD)MCMC settings	197	196	1	0.03	float
+-sw	advanced (BD)MCMC settings	201	200	1	100	int
+-k	advanced (BD)MCMC settings	205	204	1	10	int
+-a	advanced (BD)MCMC settings	209	208	1	0.3	float
+-M	advanced (BD)MCMC settings	213	212	1	25	int
+-B	advanced (BD)MCMC settings	217	216	1	1	float
+-T	advanced (BD)MCMC settings	221	220	1	1	float
+-S	advanced (BD)MCMC settings	225	224	1	not stated	int
+-multiR	tuning parameters	231	230	1	1	0 | 1
+-tT	tuning parameters	235	234	1	1	float
+-nT	tuning parameters	239	238	1	5	int >= 0
+-tQ	tuning parameters	243	242	2	1.2 1.2	float float (q, alpha)
+-tR	tuning parameters	247	246	1	0.05	float
+-tS	tuning parameters	251	250	1	1	float
+-fS	tuning parameters	255	254	1	0.7	float
+-tC	tuning parameters	259	258	3	0.025 0.025 0.1	float float float (sp, ex, q)
+-fU	tuning parameters	263	262	3	0.02 0.18 0.08 under the Covar model	float float float (preservation, BD, Covar)
+-fR	tuning parameters	267	266	1	1	float <= 1

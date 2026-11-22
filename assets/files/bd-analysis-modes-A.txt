@@ -1,0 +1,21 @@
+# source: PyRate-doc/PyRate-wiki/2.-PyRate:-command-list.md lines 38-46 | verbatim
+#        span, re-verified 2026-11-20 byte-for-byte against the local mirror block
+#        pyrate-bd-analysis/references/command-list.md:46-54 (mirror line = corpus line + 8)
+# shows: the four PyRate analysis modes (-A 0/1/2/3) exactly as the wiki command list defines them; -A 4 (RJMCMC) has NO entry on this page
+# note:  lines are given above in CORPUS numbering; this block was cut with `sed -n "46,54p"` from the byte-identical
+#        local mirror pyrate-bd-analysis/references/command-list.md (mirror line = corpus line + 8). Nothing in the span was edited.
+#        Mirror line 52 marks -A 2 as the default, which conflicts with pyrate-bd-analysis/references/tutorial-1.md:167
+#        and :174 ("the RJMCMC algorithm (default)", "-A 4 (or omitting the flag)") - and, for PyRateDES.py, with
+#        pyrate-des/references/tutorial-5.md:197, which calls -A 0 "the default".
+#        The -A 3 line (mirror 54) carries the only "Warning:" in the -A block.
+
+##### `-A`	
+`-A 0` run an MCMC for parameter estimation, i.e. with fixed number of shifts in the birth-death model (see section ‘Birth-death model – constrained shifts’). This analysis generates output files with posterior samples of the parameters, e.g. speciation/extinction/preservation rates and times of rate shifts (see section ‘Description of the output files’ for more details). 
+
+`-A 1` run an MCMC with thermodynamic integration [(TI; Lartillot & Philippe 2006)](http://sysbio.oxfordjournals.org/content/55/2/195.full) to estimate the fit of a birth-death model. This analysis computes the marginal likelihood of a birth-death model (save to a 	‘*_marginal_likelihood.txt’ file) that can be use to compare alternative models, e.g. with different number of rate shifts or trait correlations.
+
+`-A 2` run a BDMCMC analysis [(Stephens 2000)](http://www.jstor.org/stable/2673981?seq=1#page_scan_tab_contents) to jointly estimate the number of rate shifts in the birth-death process, their temporal placement and the speciation and extinction rates between 	shifts. This analysis generates output files with posterior samples of the parameters e.g. preservation rates and speciation/extinction rates through time (see section ‘Description of the output files’).
+Example: `-A 2`  (default)
+
+`-A 3` run a MCMC analysis with Dirichlet Process Prior on the speciation and extinction rates within fixed time bins. Warning: this function is currently still being tested.
+

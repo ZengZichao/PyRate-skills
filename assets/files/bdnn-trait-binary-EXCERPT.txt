@@ -1,0 +1,8 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:135-138 (the binary
+#   'Aquatic' trait table); pipe syntax rewritten as tabs, values unchanged -- not verbatim
+#   mirror text.
+# shows: how a two-state trait is encoded for -trait_file (tutorial-bdnn.md:133).
+
+scientificName	Aquatic
+Orcinus	1
+Cavia	0

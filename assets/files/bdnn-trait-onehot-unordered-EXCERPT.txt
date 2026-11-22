@@ -1,0 +1,10 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:143-147 (the Felidae /
+#   Musteloidea / Ursidae one-hot table); pipe syntax rewritten as tabs, values unchanged --
+#   not verbatim mirror text.
+# shows: one-hot encoding of an unordered trait with more than two states
+#   (tutorial-bdnn.md:141).
+
+scientificName	Felidae	Musteloidea	Ursidae
+Acinonyx	1	0	0
+Actiocyon	0	1	0
+Agriotherium	0	0	1

@@ -1,0 +1,13 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_1.md lines 67-77 (= references/tutorial-1.md lines 75-85) | derived
+# shows: the optional 5th "Site" column - occurrences sharing a Site ID are treated as coeval and get one identical randomised age (references/tutorial-1.md:87); here Site 1 = rows 1-2, Site 4 = rows 5-7, Site 5 = rows 8-9
+# derived: markdown pipe table converted to tab-delimited text, underscores unescaped, no value changed. DEFECT IN THE SOURCE: the prose at references/tutorial-1.md:72 says "the first three occurrences were found in the same site", but the table it prints gives sites 1, 1, 2 for those three rows (only the first two share a site) - the CN twin repeats the same claim (references/tutorial-1-cn.md:73), so it is the doc's own inconsistency, not a translation error
+Taxon_name	Status	MinAge	MaxAge	Site
+Canis_ferox	extinct	4.9	10.3	1
+Canis_lepophagus	extinct	4.9	10.3	1
+Canis_ferox	extinct	4.9	10.3	2
+Canis_ferox	extinct	4.9	5.3	3
+Canis_edwardii	extinct	0.3	4.9	4
+Canis_armbrusteri	extinct	0.3	4.9	4
+Canis_latrans	extant	0.3	4.9	4
+Canis_latrans	extant	1.8	4.9	5
+Canis_thooides	extinct	1.8	4.9	5

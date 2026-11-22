@@ -1,0 +1,44 @@
+# source: PyRate-doc/PyRate-wiki/3.-Summarize-PyRate-results.md lines 34-61 + PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_2.md lines 21-147 | derived
+# (every 'summarize-results.md:N' / 'tutorial-2.md:N' tag below is a MIRROR line number; mirror line = source page line + 8)
+# shows: every post-processing / summarising command line the two English mirrors of this skill print, verbatim except that the enclosing backticks, the leading 'Example:' and the docs' trailing double-spaces are removed; each command is preceded by its mirror line number and, where the doc glosses it, the gloss.
+# NOTE: the wiki-page lines print PyRate FLAGS only (no leading 'python PyRate.py'); the tutorial lines print the full invocation.
+# summarize-results.md:42   <- doc gloss: plot each log file in a directory
+-plot path_to_pyrate_results
+# summarize-results.md:43   <- doc gloss: plot a single file
+-plot path_to_pyrate_results/my_data_marginal_rates.log
+# summarize-results.md:48   <- doc gloss: plot each log file in a directory
+-plot2 path_to_pyrate_results
+# summarize-results.md:49   <- doc gloss: plot a single file
+-plot2 path_to_pyrate_results/my_data_marginal_rates.log
+# summarize-results.md:56   <- doc gloss: combine all ‘*_marginal_rates.log’ files containing the word ‘rhinos’ in a single plot, whereas other files are ignored.
+-plot path_to_pyrate_results -tag rhinos
+# summarize-results.md:61   <- doc gloss: combine all ‘*_marginal_rates.log’ files containing the word ‘rhinos’ in a single plot and and only plot marginal rates for the Neogene (23 to 0 Ma).
+-plot path_to_pyrate_results -tag rhinos -root_age 23
+# summarize-results.md:65
+-mProb file_name_mcmc.log
+# summarize-results.md:69
+-BF path_to_file/file_1_marginal_likelihood.txt path_to_file/file_2_marginal_likelihood.txt
+# tutorial-2.md:29
+python PyRate.py -ginput .../Canidae_1_G_mcmc.log -b 100
+# tutorial-2.md:41
+python PyRate.py -ginput .../path_to_log_files -b 100
+# tutorial-2.md:47
+python PyRate.py -ginput .../path_to_log_files -tag Canidae -b 100
+# tutorial-2.md:55
+python PyRate.py -ginput .../Canidae_1_G_mcmc.log -b 100 -resample 10
+# tutorial-2.md:60
+python PyRate.py -ginput .../path_to_log_files -tag Canidae -b 100 -resample 10
+# tutorial-2.md:68
+python PyRate.py -d Canidae_1_G_se_est.txt -ltt 1
+# tutorial-2.md:74
+python PyRate.py -d Canidae_1_G_se_est.txt -ltt 2
+# tutorial-2.md:79
+python PyRate.py -d Canidae_1_G_se_est.txt -ltt 3
+# tutorial-2.md:86
+python PyRate.py -d Canidae_1_G_se_est.txt -ltt 1 -grid_plot 0.1
+# tutorial-2.md:122
+python PyRateContinuous.py -d .../Canidae_1_G_se_est.txt -DD -m 0 -b 100 -plot .../Canidae_1_G_se_est_DD_0_exp.log -b 200
+# tutorial-2.md:140
+python PyRateContinuous.py -d .../Canidae_1_G_se_est.txt -m 0 -c temperature.txt -plot .../my_logfile.log -b 100
+# tutorial-2.md:155
+python PyRateContinuous.py -mL .../path_to_my_logfiles -b 100

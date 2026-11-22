@@ -1,0 +1,9 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 311-317 (= references/tutorial-5.md:319-325) | derived
+# shows: an EXCERPT of the NUMERICALLY CODED categorical-trait table for `-catD`/`-catE` (scientificName, Family); 5 rows as printed
+# caveat: tutorial-5.md:317 "Categorical traits (e.g. higher taxonomy like family) needs to be numerical coded. Additional column can be used to reflect the hierarchical taxonomy of the taxon." - no multi-column example is printed
+scientificName	Family
+Acinonyx	6
+Actiocyon	1
+Adcrocuta	8
+Adilophontes	2
+Aelurocyon	10

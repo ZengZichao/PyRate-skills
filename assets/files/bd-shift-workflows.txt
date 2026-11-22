@@ -1,0 +1,54 @@
+# source: PyRate-doc/PyRate-wiki/2.-PyRate:-command-list.md lines 102-117 + PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_1.md lines 239-251,255-270 | verbatim
+# shows: the THREE shift workflows a BD run can use, side by side and in document order - (a) constrained shifts with -mL/-mM/-mC under -A 0/-A 1, (b) shifts fixed a priori with -fixShift (fixed time bins), (c) shifts fixed at the data boundaries with -edgeShift while -A 4 searches between them
+# note:  the three blocks below were cut with sed and are byte-identical to the local mirrors (verified diff, re-checked); only the "# === ..." separators and the "# [mirror lines a-b]" markers were added. The "# === ..." markers give MIRROR numbering; the "# source:" line above gives CORPUS numbering (mirror line = corpus line + 8, the mirrors being the corpus pages plus an 8-line frontmatter). The -mC sentence really does end in " and" in the wiki: references/command-list.md:120 and references/command-list-cn.md:120 (corpus line 112) - it is a truncated sentence in the source, not an extraction artifact.
+
+# === [a] command-list.md lines 110-125 ===
+### Birth-death model – constrained shifts
+##### `-mL` 
+Set the number of speciation rates through time used in the MCMC (with `-A 0` or `-A 1`). In BDMCMC analyses (`-A 2`) this command is only used to set the number of starting rates.
+Example: `-mL 2` (set 2 speciation rates and 1 rate shift)
+
+##### `-mM` 
+Set the number of extinction rates through time used in the MCMC (with -A 0 or -A 1). In BDMCMC analyses (-A 2) this command is only used to set the number of starting rates.
+Example: `-mM 3` (set 3 extinction rates and 2 rate shifts)
+
+##### `-mC` 
+Constrain the time frames of speciation and extinction rates to be equal. This command is only used in birth-death models with at least one rate shift (e.g. with `-mL 2` and `-mM 2`) and
+Example: `-mC`
+
+##### `-fixShift` 
+Fix number and time based on ages provided in a text file. This should be simply a text file with the ages at which the rate shifts should be fixed (see file ‘epochs.txt’ in PyRate’s example files). When this command is used, the number and temporal placement of the rate shifts is fixed and set identical for both speciation and extinction. This will automatically switch the priors on speciation and extinction rates into half-Cauchy distributions [(Silvestro et al. 2015)](http://onlinelibrary.wiley.com/doi/10.1111/nph.13247/abstract) see also function [-cauchy](https://github.com/dsilvestro/PyRate/wiki/2.-PyRate:-command-list#cauchy). 
+Example: `-fixShift path_to_file/epochs.txt`
+
+# === [b] tutorial-1.md lines 247-259 ===
+## Speciation and extinction rates within fixed time bins
+#### Analysis setup
+PyRate can also fit birth-death models in which the **number and temporal placement of rate shifts is fixed a priori**, e.g. based on geological epochs. In this case a file with the predefined times of rate shifts must be provided using the command `-fixShift`. The format of this file is very simple and an example is available here: `.../PyRate-master/example_files/epochs.txt`. This model assumes half-Cauchy prior distributions for speciation and extinction rates between shifts, with a hyper-prior on the respective scale parameter to reduce the risk of over parameterization. 
+To enforce fixed times of rate shifts we use the following command:
+
+`python PyRate.py .../Canis_pbdb_data_PyRate.py -fixShift .../epochs.txt`
+
+The other options described above to set preservation model, length of the MCMC, and sampling frequency are also available in this case.
+
+#### Summarize the results
+Running PyRate with fixed times of rate shifts produces the same 3 output files described in the previous analysis. The main difference is in the *mcmc.log* file where we will no longer have the estimate number of rate shifts (*k_birth*, *k_death*) as these are fixed. However, the log file now includes speciation/ extinction rates between shifts (named *lambda_0, lambda_1,* ... and  *mu_0, mu_1, ...*, respectively), and the estimated scale parameters of the half-Cauchy prior distributions assigned to speciation and extinction rates, indicated by *hypL* and *hypM*, respectively.
+
+RTT plots can be generated as in the previous analysis using the command `-plot` (or `-plot2`) followed by the path to the *marginal_rates.log* file and setting the number of samples be discarded as burnin (e.g. `-b 100`).
+
+# === [c] tutorial-1.md lines 263-278 ===
+## Setting fixed shifts at the boundaries, while searching for rate shifts between them
+
+Sometimes fossil data sets are truncated by max and min boundaries (for instance because occurrences are only available within a time window). This can cause apparent rate shifts at the edges of the time range, which reflect the sampling bias. In this case, you can fix _a priori_ times of rate shift based on the known temporal boundaries of the data set and estimate the rates within the time window, ignoring what happens beyond the boundaries.  This feature can be combined with the [RJMCMC algorithm](https://github.com/dsilvestro/PyRate/blob/master/tutorials/pyrate_tutorial_3.md#pyrate-tutorial-3) (`-A 4`) to infer rate shifts within the allowed time window:
+
+`python PyRate.py <data_set> -A 4 -edgeShift 18 2`
+
+where -A 4 sets the RJMCMC algorithm (that looks for rate shifts), and `-edgeShift 18 2` sets fixed times of shifts at times 18 and 2. With these settings the algorithm will only search for shifts within this time range.
+You can also set only a max age boundary shift using:
+
+`python PyRate.py <data_set> -A 4 -edgeShift 18 0`
+
+or a min age boundary shift using:
+
+`python PyRate.py <data_set> -A 4 -edgeShift inf 0`
+
+When summarizing the results, only rates estimated within the time window should be considered, e.g. using the [`plotRJ` command](https://github.com/dsilvestro/PyRate/blob/master/tutorials/pyrate_tutorial_3.md#plot-rates-through-time-and-rate-shifts) with the flags `-root_plot` and `-min_age_plot`.

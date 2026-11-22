@@ -1,0 +1,9 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 285-291 (= references/tutorial-5.md:293-299) | derived
+# shows: an EXCERPT of the continuous-trait table for `-traitD`/`-traitE` (scientificName, BodyMass in kg); the doc prints 5 rows of Body_mass_1.txt
+# caveat: by default traits are internally log-transformed (tutorial-5.md:309); values here are untransformed as printed
+scientificName	BodyMass
+Acinonyx	93.604
+Actiocyon	3.435
+Adcrocuta	32.497
+Adilophontes	137.499
+Aelurocyon	1.731

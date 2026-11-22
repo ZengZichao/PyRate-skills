@@ -1,0 +1,41 @@
+# source: format per ../pyrate-command-reference/references/command-list.md:92 (the -qShift rule, "a file containing the times that delimit the different epochs"); values SYNTHETIC
+# shows: the shape a -qShift <file> argument points at - plain text, one epoch-boundary age in Myr per line, no header, no column names; here listed ascending from the youngest (0.0117) to the oldest (541.0)
+# note: SYNTHETIC - the ages are a standard Phanerozoic epoch-boundary series written for this fixture, not a copy
+#       of anything. The upstream example_files/epochs_q.txt that command-list.md:92 LINKS is not included in this
+#       corpus and no author of this suite had access to it, so its contents, line count, byte count, checksum,
+#       sort order and header convention are all unknown. Do not cite this file as "what upstream ships" and do not
+#       infer from it that PyRate requires ascending order or exactly N boundaries - the docs state neither.
+#       Earlier revisions of this header claimed verbatim upstream provenance and a specific line count; both were
+#       fabricated and have been removed. See ../README.md.
+0.0117
+2.58
+5.333
+23.03
+33.9
+56.0
+66.0
+100.5
+145.0
+163.5
+174.1
+201.3
+237
+247.2
+252.17
+259.8
+272.3
+298.9
+323.2
+358.9
+382.7
+393.3
+419.2
+423.0
+427.4
+433.4
+443.8
+458.4
+470.0
+485.4
+497
+541.0

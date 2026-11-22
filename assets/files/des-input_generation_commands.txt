@@ -1,0 +1,15 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 55, 81, 85, 135 (= references/tutorial-5.md:63, 89, 93, 143; the mirror adds 8 frontmatter lines) | verbatim
+# shows: every DES INPUT-GENERATION command line the tutorial prints (PyRateDES.py run with -fossil/-recent)
+# gotcha: the -data_in_area example (line 93) does NOT itself contain -data_in_area; see SKILL.md hazard table
+
+# tutorial-5.md:63 - route 1, discrete area classification (Carnivora)
+python ./PyRateDES.py -fossil ./example_files/DES_examples/Carnivora/CarnivoraFossils.txt -recent ./example_files/DES_examples/Carnivora/CarnivoraRecent.txt -wd ./example_files/DES_examples/Carnivora -filename Carnivora -bin_size 0.5 -rep 10
+
+# tutorial-5.md:89 - -timeline, unequal bin durations (-bin_size ignored)
+python ./PyRateDES.py -fossil ./example_files/DES_examples/Carnivora/CarnivoraFossils.txt -recent ./example_files/DES_examples/Carnivora/CarnivoraRecent.txt -wd ./example_files/DES_examples/Carnivora -filename Carnivora -timeline 0.5 2.0 5.0 10.0 20.0 -rep 10
+
+# tutorial-5.md:93 - the -data_in_area 1 example as printed (single-area coding, Diatoms_Lake_Ohrid)
+python ./PyRateDES.py -fossil .../example_files/DES_examples/Diatoms_Lake_Ohrid/DiatomFossils.txt -recent .../example_files/DES_examples/Diatoms_Lake_Ohrid/DiatomRecent.txt -wd .../example_files/DES_examples/Diatoms_Lake_Ohrid -filename Diatoms -bin_size 0.5 -rep 10
+
+# tutorial-5.md:143 - route 2, coordinates classified by speciesgeocodeR into foss.txt / pres.txt
+python ./PyRateDES.py -fossil ./example_files/DES_examples/DES_input_data/foss.txt -recent ./example_files/DES_examples/DES_input_data/pres.txt -wd ./example_files/DES_examples -filename Example2 -bin_size 2 -rep 5

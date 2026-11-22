@@ -1,0 +1,9 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:172-175 (the single
+#   Ordered_trait column); pipe syntax rewritten as tabs, values unchanged -- not verbatim
+#   mirror text.
+# shows: the labels-only variant the docs say to give -plotBDNN_traits so PDP labels start
+#   at zero (tutorial-bdnn.md:170).
+
+Ordered_trait
+2
+1

@@ -1,0 +1,17 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 23-33, 35, 83 (= references/tutorial-5.md:31-41, 43, 91) | derived
+# shows: the shape of the fossil table WITH a "site" column - the documented way to keep coeval occurrences of one assemblage randomizing together
+# caveat: the doc names the file CarnivoraFossilsSite.txt but never prints its contents. Only the column NAME is documented
+#         (tutorial-5.md:91 "By default a column named `site` is assumed (but not required)"); column POSITION and the
+#         site-ID values below are illustrative, invented for this fixture - the first 4 columns are verbatim from the
+#         printed CarnivoraFossils table. Note the doc-vs-doc conflict: line 43 puts the site column "in the input data"
+#         (the fossil table), line 91 says it is a column "in the `-recent` text file".
+scientificName	earliestAge	latestAge	higherGeography	site
+Acheronictis	30.8	20.43	NAmerica	1
+Adcrocuta	11.608	5.333	Eurasia	2
+Agriotherium	10.3	4.9	NAmerica	3
+Agriotherium	11.608	5.333	Eurasia	4
+Bassariscus	20.43	15.97	NAmerica	5
+Bassariscus	4.9	1.8	NAmerica	6
+Canis	4.9	0.3	NAmerica	7
+Canis	1.8	0.3	NAmerica	7
+Canis	3.2	0.0117	Eurasia	8

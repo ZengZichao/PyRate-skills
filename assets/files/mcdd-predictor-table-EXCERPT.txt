@@ -1,0 +1,12 @@
+# provenance: derived from pyrate-diversity-dependence/references/tutorial-4.md:56-62 (the
+#   time / predictor table); pipe syntax rewritten as tabs, values unchanged -- not verbatim
+#   mirror text.
+# shows: one predictor file for the -var folder of a PyRateMBD run
+#   (tutorial-4.md:54, 71).
+
+time	predictor
+0	0.06
+1	0.0665
+2	0.073
+3	0.0795
+4	0.086

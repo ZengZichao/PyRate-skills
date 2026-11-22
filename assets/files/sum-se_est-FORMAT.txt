@@ -1,0 +1,20 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_2.md lines 14-16, 37-41, 49-54; PyRate-wiki/2.-PyRate:-command-list.md line 10; PyRate-wiki/4.-PyRateContinuous.md lines 3, 8 | derived
+# (all line tags in this file are MIRROR lines = source page line + 8)
+# shows: the positional layout of the tab-separated table that "-ginput" writes (e.g. Canidae_1_G_se_est.txt) and that "-d" reads back - 4 base columns, plus one extra column PAIR per further estimate
+# WARNING: no mirror of this corpus prints a data row or the literal header labels of this file; the docs say only that
+#   "the first line containing column headers" is followed by "one row for each species". The angle-bracket tokens below
+#   are placeholders for the four documented column meanings, NOT values to feed PyRate. Do not run this file through PyRate.
+# documented wording (references/tutorial-2.md:24):
+#   "Each row contains 4 columns: the first column indicates the clade assignment of species, this is only useful when using" (link to) MCDD models "and should be filled with 0s for all other analyses. The second column indicates a species numeric identifier (this values are arbitrary and only used for reference). Finally the following columns contain the time of origin and extinction of each species or taxon."
+# layout, tab-separated (columns are positional):
+<clade_assignment>	<species_numeric_id>	<time_of_origin>	<time_of_extinction>
+# with replicate / resampled estimates appended as further pairs (command-list.md:18: "5th column for a second estimate of origination times, 6th column for a second estimate of extinction times"; tutorial-2.md:49: -ginput with -tag gives "columns with the origin and extinction of each species given for each replicate"; tutorial-2.md:57: -resample 10 stores ten samples "as additional columns"):
+<clade_assignment>	<species_numeric_id>	<time_of_origin_rep1>	<time_of_extinction_rep1>	<origin_rep2>	<extinction_rep2>	...	<origin_repN>	<extinction_repN>
+# which file name: references/tutorial-2.md:33 prints "Canidae_1_G_se_est.txt" for the mean-times output; the same page then
+#   calls the combined output "...se_ext.txt" (lines 45, 49, 66) - the two names are not reconciled anywhere in the corpus.
+#   ../pyrate-continuous-covariates/references/pyratecontinuous.md:16 prints "Ursidae_1_se_est.txt"; the BDNN tutorial
+#   (../pyrate-bdnn/references/tutorial-bdnn.md:477,482) prints "Carnivora_occs_1_Grj_se_est.txt", produced by a
+#   -ginput call with -b 0.25 (a fraction) - i.e. <input stem>_se_est.txt by observation, never by rule.
+# downstream readers of this table: -d (PyRate / PyRateContinuous, auto-sets -fixSE = null, command-list.md:18),
+#   -ltt 1/2/3 (references/tutorial-2.md:66-81), PyRateMCDD (../pyrate-diversity-dependence/references/tutorial-4.md:24-28),
+#   PyRateBDNN (../pyrate-bdnn/references/tutorial-bdnn.md:467,482); select a replicate/column pair with -j (command-list.md:18).

@@ -1,0 +1,10 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:214-218 (the binned
+#   time-series table the page prints for -BDNNtimevar); the markdown pipe syntax is
+#   rewritten as tab-separated text here, so this file is NOT a verbatim mirror span --
+#   every value is the mirror's, unchanged.
+# shows: the already-binned time-series format (Time, one mean value per 1-Myr bin).
+
+Time	Temperature
+0.0	Mean value from 0.0-0.9999 Ma
+1.0	Mean value from 1.0-1.9999 Ma
+2.0	Mean value from 2.0-2.9999 Ma

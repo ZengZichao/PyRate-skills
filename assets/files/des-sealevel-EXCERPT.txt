@@ -1,0 +1,9 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 232-238 (= references/tutorial-5.md:240-246) | derived
+# shows: an EXCERPT of a covariate time-series (age, sealevel) for `-varD`/`-varE`; the doc prints 5 rows of a tab-separated file stored in its own directory
+# caveat: rows are 0.002 Myr apart but 0.008 is absent in the printed table, so this is truncated/illustrative, not a complete file
+age	sealevel
+0.000	-19.636
+0.002	-23.272
+0.004	-20.727
+0.006	-51.636
+0.010	-114.181

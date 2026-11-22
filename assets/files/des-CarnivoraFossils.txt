@@ -1,0 +1,12 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_5.md lines 23-33 (= references/tutorial-5.md:31-41) | derived
+# shows: the DES "route 1" fossil-occurrence table (scientificName, earliestAge, latestAge, higherGeography) - the markdown table re-emitted as the tab-delimited text PyRateDES.py -fossil reads
+scientificName	earliestAge	latestAge	higherGeography
+Acheronictis	30.8	20.43	NAmerica
+Adcrocuta	11.608	5.333	Eurasia
+Agriotherium	10.3	4.9	NAmerica
+Agriotherium	11.608	5.333	Eurasia
+Bassariscus	20.43	15.97	NAmerica
+Bassariscus	4.9	1.8	NAmerica
+Canis	4.9	0.3	NAmerica
+Canis	1.8	0.3	NAmerica
+Canis	3.2	0.0117	Eurasia

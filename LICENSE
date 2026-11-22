@@ -1,0 +1,66 @@
+MIT License
+
+Copyright (c) 2026 zengzichao
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+SCOPE OF THIS LICENSE — it does NOT cover the mirrored documentation.
+
+The MIT grant above applies only to the original material written for this
+repository: the 14 `SKILL.md` guides, the Python helpers under
+`pyrate-command-reference/scripts/` and `pyrate-input-file/scripts/`, the
+acceptance gates under `scripts/`, the fixture index
+`assets/files/README.md`, `README.md`, `.gitignore` and the repository
+organisation.
+
+EXCEPTION — everything under any `references/` directory is a verbatim local
+mirror of the PyRate documentation (the GitHub wiki at
+<https://github.com/dsilvestro/PyRate/wiki> and the `tutorials/` pages at
+<https://github.com/dsilvestro/PyRate/tree/master/tutorials>), which is part of
+PyRate, authored by D. Silvestro and collaborators and licensed **AGPLv3**
+(see <https://github.com/dsilvestro/PyRate>, "PyRate is licensed under a AGPLv3
+License", mirrored verbatim at `pyrate/references/home.md:24` = corpus
+`PyRate-wiki/Home.md:16`). The only
+changes made to a mirror are a YAML frontmatter block recording its
+`source_url`/`mirrored_from` and the re-pointing of image paths to
+`../../assets/images/`. This file does not re-license those mirrors, grants you
+nothing beyond what the upstream AGPLv3 already allows, and does not waive the
+upstream authors' rights.
+
+The same holds for the images under `assets/images/`: they are byte-for-byte
+copies of figures shipped with the upstream documentation and remain under
+upstream terms.
+
+One further exception, stated for the avoidance of doubt: the 25 `*-cn.md`
+files under `references/` are NOT upstream pages. They are local
+Simplified-Chinese translations produced in the workspace that assembled this
+suite (they are untracked in both upstream checkouts); they translate the
+AGPLv3 upstream English pages and are therefore derivative works of that
+documentation, not MIT-licensed original material of this repository.
+
+Fixtures under `assets/files/` are transcriptions or reformattings of code
+blocks and tables printed by the mirrored documentation, plus worked examples
+this suite constructed where the documentation prints no data; each file's own
+provenance header, and `assets/files/README.md`, states which is which. Where a
+fixture reproduces upstream text or data, upstream terms apply to that span.
+
+See `LICENSE.md` for the corpus, the git revisions the mirrors were taken from,
+and the warranty disclaimer.

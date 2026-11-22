@@ -1,0 +1,11 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_1.md lines 97-105 (= references/tutorial-1.md lines 105-113) | derived
+# shows: the table -check_names writes ("a table saved in a text file with plausible typos"): taxon1, taxon2, rank; rank 0-1 = most likely misspellings, rank 2-3 = most likely truly different names (references/tutorial-1.md:100)
+# derived: markdown pipe table converted to tab-delimited text; no rank 3 row is printed anywhere in the corpus, although the prose defines one
+taxon1	taxon2	rank
+Adocus_parvus	Adocus_pravus	0
+Testudo_annae	Testudo_nanus	0
+Trionyx_pliocaenicus	Trionyx_pliocenicus	0
+Testudo_aralensis	Testudo_tarakliensis	1
+Cyclanorbis_turkanensis	Cyclanorbis_urahensis	2
+Geochelone_eocaenica	Neochelys_eocaenica	2
+Megalochelys_sivalensis	Melanochelys_sivalensis	2

@@ -1,0 +1,11 @@
+# provenance: derived -- a two-column projection (name, trait) constructed by this suite
+#   from the trait column of pyrate-input-file/references/preparing-input-file.md:16-23.
+#   The values are the mirror's; the file shape is ours, and no mirror prints a
+#   *_bm.txt-style trait file, so this is not verbatim mirror text.
+# shows: the standalone trait file -trait_file reads, including the NA row the docs allow
+#   (pyrate-command-reference/references/command-list.md:133).
+
+Ursus_etruscus	90
+Agriotherium_insigne	285
+Ursavus_brevirhinus	80
+Agriotherium_intermedium	NA

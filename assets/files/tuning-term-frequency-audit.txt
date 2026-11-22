@@ -1,0 +1,70 @@
+# provenance: synthesized by this suite -- this is captured OUTPUT of our own helper, run
+#   from the suite root: sh assets/files/tuning-term-frequency-audit.sh. It is a count of
+#   how often each tuning word occurs on the mirrored pages, not text lifted from a mirror,
+#   so no mirror line can be cited for it; re-run the script to reproduce it.
+# shows: which vocabulary the mcmc-tuning pages really print (and that -fast_burnin is
+#   unique to tutorial-6.md).
+
+## pages scanned (wc -l -c)
+tutorial-6.md           55 3425
+tutorial-6-cn.md        56 3402
+command-list.md         268 22273
+command-list-cn.md      268 21108
+
+## tuning knobs: occurrences of each literal command name
+-fast_burnin t6=2  t6-cn=2  cl=0  cl-cn=0
+-multiR      t6=4  t6-cn=4  cl=5  cl-cn=5
+-tT          t6=2  t6-cn=2  cl=2  cl-cn=2
+-nT          t6=2  t6-cn=2  cl=2  cl-cn=2
+-tQ          t6=2  t6-cn=2  cl=2  cl-cn=2
+-tR          t6=3  t6-cn=3  cl=3  cl-cn=3
+-tS          t6=2  t6-cn=2  cl=2  cl-cn=2
+-fS          t6=2  t6-cn=2  cl=2  cl-cn=2
+-tC          t6=2  t6-cn=2  cl=2  cl-cn=2
+-fU          t6=3  t6-cn=3  cl=3  cl-cn=3
+-fR          t6=2  t6-cn=2  cl=2  cl-cn=2
+-r           t6=0  t6-cn=0  cl=11 cl-cn=10
+-sw          t6=0  t6-cn=0  cl=2  cl-cn=2
+-k           t6=0  t6-cn=0  cl=2  cl-cn=2
+-a           t6=0  t6-cn=0  cl=2  cl-cn=2
+-M           t6=0  t6-cn=0  cl=2  cl-cn=2
+-B           t6=0  t6-cn=0  cl=3  cl-cn=3
+-T           t6=0  t6-cn=0  cl=2  cl-cn=2
+
+## which page defines each knob HEADING (1 = defined there, 0 = absent)
+-fast_burnin tutorial-6.md=1  command-list.md=0
+-multiR      tutorial-6.md=1  command-list.md=1
+-tT          tutorial-6.md=1  command-list.md=1
+-nT          tutorial-6.md=1  command-list.md=1
+-tQ          tutorial-6.md=1  command-list.md=1
+-tR          tutorial-6.md=1  command-list.md=1
+-tS          tutorial-6.md=1  command-list.md=1
+-fS          tutorial-6.md=1  command-list.md=1
+-tC          tutorial-6.md=1  command-list.md=1
+-fU          tutorial-6.md=1  command-list.md=1
+-fR          tutorial-6.md=1  command-list.md=1
+
+## directional statements about tuning knobs (grep -c per phrase)
+Reducing this number can improve               t6=0 cl=1
+Higher number of scaling factors will improve  t6=0 cl=1
+Increasing this parameter has a similar effect t6=0 cl=1
+improve the MCMC mixing                        t6=1 cl=1
+automatically set to HPP                       t6=1 cl=1
+automatically set to 0                         t6=1 cl=1
+
+## convergence-diagnostic vocabulary (all four mirrors) - expect 0 for every line
+effective sample     0
+ESS                  0
+Rhat                 0
+R-hat                0
+Gelman               0
+autocorrelation      0
+acceptance           0
+stationar            0
+tracer               0
+convergence      1 (only ever inside -fast_burnin)
+mixing           4 (only ever inside -fR)
+
+## the one documented fast-burnin default, verbatim
+13:##### `-fast_burnin <int>` 
+14:Specify number of MCMC iterations using approximate Gibbs sampler for times of origination and extinction for faster convergence (default: `-fast_burnin 0`)

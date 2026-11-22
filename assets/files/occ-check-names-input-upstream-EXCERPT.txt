@@ -1,0 +1,28 @@
+# provenance: synthesized by this suite as a worked example -- the name in this file's own
+#   name is aspirational, NOT a claim of provenance: neither these names nor this list
+#   appears anywhere in the mirrored corpus. The format is the one the docs give
+#   (pyrate-bd-analysis/references/tutorial-1.md:94, 98: one Genus_species per line, the
+#   file a -check_names reads), the misspelled and correct names are OURS.
+# shows: an input that makes -check_names report both typo classes and true variants.
+
+species
+Aaptorcytes_ivyi
+Aaptorcytes_ivyi
+Aaptoryctes ivyi
+Aaptoryctes ivyi
+Aaptoryctes ivyi
+Aaptoryctes ivyi
+Aaptoryctes ivyi
+Aatotomus placochton
+Aatotomus placochton
+Abderites meridionalis
+Abderites meridionalis
+Abderites meridionalis
+Abderites meridionalis
+Abderites meridionalis
+Abderites meridionalis
+Abdounodus hamdii
+Abelmoschomys simpsoni
+Abelmoschomys_phthanus
+Abelmoschomys_simpsoni
+Abelmoschomys_valensis

@@ -1,0 +1,11 @@
+# provenance: derived from pyrate-rjmcmc/references/tutorial-3.md:134-139 (the taxon /
+#   max_ts / min_ts / max_te / min_te table); the pipe syntax is rewritten as tabs and the
+#   separator row is dropped, so this is not a verbatim mirror span -- every value is the
+#   mirror's, unchanged.
+# shows: the -bound_se table that fixes known origination/extinction bounds.
+
+taxon	max_ts	min_ts	max_te	min_te
+Anolcites	251.902	NA	NA	201.4
+Acanthoscaphites	NA	NA	NA	66.0
+Glatziella	372.15	NA	NA	NA
+Sabaliceras	NA	276.1	NA	251.902

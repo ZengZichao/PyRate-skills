@@ -1,0 +1,15 @@
+# provenance: derived from pyrate-input-file/references/preparing-input-file.md:16-24 --
+#   every value and both separators of every row are the mirror's; the backticks the wiki
+#   wraps each row in are dropped here, so the file is not a verbatim mirror span.
+# shows: a trait carried as an extra column of the occurrence table (the -trait_file
+#   alternative; pyrate-command-reference/references/command-list.md:133).
+
+Species				Status	MinT	 MaxT    Trait
+Ursus_etruscus			extinct	 1.9	  2.6		 90  
+Ursus_etruscus			extinct	 1.2	  1.8		 90  
+Ursus_etruscus			extinct	 2.6	  3.4		 90  
+Agriotherium_insigne		extinct	 4.2	  5.3		285  
+Ursavus_brevirhinus		extinct	 8.2	  9.0		 80  
+Ursavus_brevirhinus		extinct	11.2	 15.2		 80  
+Agriotherium_intermedium	extinct	 3.4	  4.2		 NA  
+...					...		 ...	  ...		...	

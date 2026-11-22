@@ -1,0 +1,8 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:98-101 (the rate /
+#   cv_empirical / cv_expected table); pipe syntax rewritten as tabs, values unchanged --
+#   not verbatim mirror text.
+# shows: the *_cv_rate_variation.csv output of -BDNN_pred_importance.
+
+rate	cv_empirical	cv_expected
+speciation	0.55	0.29
+extinction	0.82	0.34

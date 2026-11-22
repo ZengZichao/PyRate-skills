@@ -1,0 +1,8 @@
+# provenance: derived from pyrate-bdnn/references/tutorial-bdnn.md:192-195 (the
+#   Ordered_trait / Temperature backscaling table); pipe syntax rewritten as tabs, values
+#   unchanged, so this file is not verbatim mirror text.
+# shows: the mean/SD file that undoes a z-transformation of an ordered trait.
+
+Ordered_trait	Temperature
+2	16.02
+1	2.20

@@ -1,0 +1,72 @@
+# source: PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_0.md lines 11-47 | derived (doc command lines, verbatim, each tagged with its mirror file:line)
+# source: PyRate-doc/PyRate-wiki/Home.md lines 66-76 | derived (inline-code command lines and PATH examples, verbatim; the wiki's curly quotes normalised to straight)
+# source: PyRate-doc/PyRate-wiki/2.-PyRate:-command-list.md lines 2,7,12,70-71 | derived (per-program launch lines)
+# source: PyRate-doc/PyRate-wiki/4.-PyRateContinuous.md line 8, PyRate-tutorials/tutorials/pyrate_tutorial_4.md line 26,
+#         PyRate-tutorials/tutorials/pyrate_tutorial_5.md line 55 | derived - one per-program launch line each, as mirrored
+#         by the sibling skill cited inline in section D (mirror paths are given in full there)
+# shows: every install command, launch form and example PATH string the two install pages (sections A-C) print, plus the
+#        per-program launch lines the sibling mirrors print (section D), each tagged with the mirror file:line to cite.
+#        One PATH instruction sits outside this scope: pyrate_tutorial_5.md:346 (mirror ../pyrate-des/references/tutorial-5.md:354)
+#        tells Windows users to put Rscript.exe on PATH but prints no example path, so there is no string to copy here.
+#        (annotated index: the [file:line] tags, the section headings, this header and the labels and
+#         parenthesised notes beside each entry are additions, not doc text; only the command, message or
+#         path string itself is copied from the tagged line, and in section C the entry label in front of
+#         the quoted path paraphrases the sentence it comes from)
+#
+# Mirror line numbers below are those of this suite's local mirrors (frontmatter included), i.e. exactly
+# what `grep -n` returns from the skill folder. No line is tagged (cn) below, because every string listed
+# here is byte-identical in the Chinese twin at <name>-cn.md (checked): the command lines are verbatim the
+# same in both, and the example paths, the `RScript` shell command and the `Module FastPyRateC was not
+# found.` message are carried across untranslated; only the surrounding prose differs. Each CN mirror has
+# 9 frontmatter lines instead of 8, so a CN line number is the EN number plus 1.
+#
+# ---------------------------------------------------------------------------
+# A. Virtual-environment install, steps 1-4 (pyrate-installation/references/virtual-environment.md)
+# ---------------------------------------------------------------------------
+[virtual-environment.md:19] python -m venv desired_path_to_env/pyrate_env
+[virtual-environment.md:24] py -m venv desired_path_to_env/pyrate_env                              (Windows)
+[virtual-environment.md:31] source desired_path_to_env/pyrate_env/bin/activate                     (MacOS/UNIX)
+[virtual-environment.md:36] .\desired_path_to_env\pyrate_env\Scripts\activate                      (Windows)
+[virtual-environment.md:42] python -m ensurepip --upgrade
+[virtual-environment.md:43] python -m pip install --upgrade pip
+[virtual-environment.md:44] python -m pip install -r your_path/PyRate-master/requirements.txt
+[virtual-environment.md:49] python your_path/PyRate-master/PyRate.py -v
+[virtual-environment.md:52] Module FastPyRateC was not found.                                      (message, not a command)
+[virtual-environment.md:26] python3                                                                ("you may have to type")
+[virtual-environment.md:39] py                                                                     ("on Windows use `py` instead of `python`")
+
+# ---------------------------------------------------------------------------
+# B. Launch forms printed by the wiki Home page (pyrate-installation/references/home.md)
+# ---------------------------------------------------------------------------
+[home.md:75] `./PyRate.py path_to_input_file/file_name.py [commands]`                              (UNIX, Terminal in the PyRate directory)
+[home.md:77] `python PyRate.py path_to_input_file/file_name.py [commands]`                         (UNIX, alternative)
+[home.md:80] `python PyRate.py path_to_input_file/file_name.py [commands]`                         (Windows, Command prompt in the PyRate directory)
+
+# ---------------------------------------------------------------------------
+# C. PATH examples printed by the two install pages (path strings verbatim, backslashes kept;
+#    the wiki Home page wraps its examples in curly quotes, written here as straight quotes)
+# ---------------------------------------------------------------------------
+[home.md:82]                 Python 2.x folder  'C:\python27'
+[home.md:84]                 R bin folder       'C:\Program Files\R\R-2.14.0\bin\i386'
+[virtual-environment.md:54]  Python 3.x folder  'C:\...\Python\Python312'
+[virtual-environment.md:54]  Python scripts     'C:\...\Python\Python312\Scripts'
+[virtual-environment.md:55]  R bin folder       'C:\Program Files\R\R-4.4.1\bin'
+[home.md:84 / virtual-environment.md:55]  shell command the -plot function calls: `RScript`
+
+# ---------------------------------------------------------------------------
+# D. Per-program launch lines as other skills' mirrors print them
+#    (same corpus, cited from the mirror that carries the line)
+# ---------------------------------------------------------------------------
+[../pyrate-command-reference/references/command-list.md:15] `python PyRate.py path_to_input_file/Ursidae_PyRate.py`
+[../pyrate-command-reference/references/command-list.md:20] `python PyRate.py -d path_to_input_file/Ursidae_SE.txt`
+[../pyrate-continuous-covariates/references/pyratecontinuous.md:16] `python PyRateContinuous.py -ginput path_to_log_file/Ursidae_1_mcmc.log -b 100`
+[../pyrate-diversity-dependence/references/tutorial-4.md:34] `PyRateMCDD.py -d /example_files/Carnivores_MCDD.txt -n 10000000 -s 10000`
+[../pyrate-des/references/tutorial-5.md:63] `python ./PyRateDES.py -fossil ./example_files/DES_examples/Carnivora/CarnivoraFossils.txt -recent ./example_files/DES_examples/Carnivora/CarnivoraRecent.txt -wd ./example_files/DES_examples/Carnivora -filename Carnivora -bin_size 0.5 -rep 10`
+[../pyrate-command-reference/references/command-list.md:78] `-thread 0 0` (default; sequential likelihood calculation)
+[../pyrate-command-reference/references/command-list.md:79] `-thread 1 3` (use 1 thread for birth-death, 3 threads for NHPP likelihood)
+
+# ---------------------------------------------------------------------------
+# E. Example data location the command list links to
+# ---------------------------------------------------------------------------
+[../pyrate-command-reference/references/command-list.md:10] https://github.com/dsilvestro/PyRate/tree/master/example_files
+[virtual-environment.md:44 / home.md:71]                    requirements.txt at the root of PyRate-master (the corpus never prints its contents)

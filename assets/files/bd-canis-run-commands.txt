@@ -1,0 +1,76 @@
+# source: PyRate-skills/pyrate-bd-analysis/references/tutorial-1.md lines 31,34,37,43,45,68,98,126,132,137,144,145,146,151,156,172,180,186,211,218,227,233,241,252,267,272,276 - i.e. EVERY command line Tutorial #1 prints, in document order. The mirror is a byte-exact copy of PyRate-doc/PyRate-tutorials/tutorials/pyrate_tutorial_1.md plus an 8-line frontmatter, so the corpus line is the mirror line minus 8. All line numbers in this file are MIRROR numbers. | derived
+# shows: the complete Canis birth-death analysis exactly as Tutorial #1 prints it - every command line, in the order the tutorial prints them (R input-file preparation, then PyRate.py runs), ready to copy-paste after substituting real paths for the docs' `.../` placeholders
+# rules: each command line is byte-identical to the tutorial's inline code span (including the double spaces the docs print, e.g. the `-check_names` and `extract.ages.pbdb` lines); ONLY these changes were made: (1) the inline-code backticks were removed, (2) the tutorial's prose annotations `[NHPP model]` / `[HPP model]` (tutorial-1.md:144-145) and the double-backtick delimiters of the `-PPmodeltest` line (tutorial-1.md:156) became comments, (3) a `#` comment naming the mirror line precedes each command - those comments paraphrase the tutorial's own prose (mirror line given) and add no behaviour the docs do not state.
+# how to run: this is a template, not a script - `.../` and `<data_set>` are the docs' own placeholders. Substitute real paths first (see the Worked example of ../../pyrate-bd-analysis/SKILL.md), then `bash bd-canis-run-commands.txt`. Python 2.6-2.7 only, Python 3 is not supported (../../pyrate/references/home.md:69).
+
+# === 1. Generate the PyRate input file (option 1: PBDB) - tutorial-1.md sections "Generate PyRate input file (option 1)" steps 3-6
+# tutorial-1.md:31 - load the R utility script
+source(".../PyRate-master/pyrate_utilities.r")
+# tutorial-1.md:34 - declare the extant species (all others are taken as extinct)
+extant_dogs = c("Canis rufus","Canis lupus","Canis aureus","Canis latrans","Canis mesomelas","Canis anthus","Pseudalopex gymnocercus","Canis adustus","Canis familiaris")
+# tutorial-1.md:37 - parse the raw PBDB table and write *_PyRate.py + *_SpeciesList.txt
+extract.ages.pbdb(file= ".../Canis_pbdb_data.csv",extant_species=extant_dogs)
+
+# === 2. Check the generated input file
+# tutorial-1.md:43 - browse to the PyRate folder
+cd ".../PyRate-master"
+# tutorial-1.md:45 - summary statistics of the data set
+python PyRate.py '.../Canis_pbdb_data_PyRate.py' -data_info
+
+# === 3. Generate the input file (option 2: hand-made occurrence table) and age replicates
+# tutorial-1.md:68 - note the tutorial prints this one for Ursidae, not Canis; the Canis narrative later states its input file "included 10 randomized replicates" (tutorial-1.md:178)
+extract.ages(file="…/PyRate/example_files/Ursidae.txt", replicates=10)
+
+# === 4. Optional: check species names for typos / inconsistent spelling
+# tutorial-1.md:98 - takes the *_SpeciesList.txt-style one-name-per-row text file
+python PyRate.py  -check_names .../PBDB_dataset_TaxonList.txt
+
+# === 5. Preservation model variants (section "Defining the preservation model")
+# tutorial-1.md:126 - homogeneous Poisson process instead of the default NHPP
+python PyRate.py .../Canis_pbdb_data_PyRate.py -mHPP
+# tutorial-1.md:132 - time-variable Poisson process (TPP) with epoch boundaries
+python PyRate.py .../Canis_pbdb_data_PyRate.py -qShift .../epochs_q.txt
+# tutorial-1.md:137 - TPP with the prior rate parameter estimated from the data
+python PyRate.py .../Canis_pbdb_data_PyRate.py -qShift .../epochs_q.txt -pP 1.5 0
+# tutorial-1.md:144 - Gamma rate heterogeneity on the default NHPP
+python PyRate.py .../Canis_pbdb_data_PyRate.py -mG
+# tutorial-1.md:145 - Gamma heterogeneity under HPP
+python PyRate.py .../Canis_pbdb_data_PyRate.py -mHPP -mG
+# tutorial-1.md:146 - Gamma heterogeneity under TPP
+python PyRate.py .../Canis_pbdb_data_PyRate.py -qShift .../epochs_q.txt -mG
+# tutorial-1.md:151 - also log per-lineage relative preservation rates (writes ONE extra file)
+python PyRate.py .../Canis_pbdb_data_PyRate.py -qShift .../epochs_q.txt -mG -log_sp_q_rates
+# tutorial-1.md:156 - model test across NHPP / HPP / TPP (Gamma is NOT tested)
+python PyRate.py .../Canis_pbdb_data_PyRate.py -qShift .../epochs_q.txt -PPmodeltest
+
+# === 6. The BDMCMC birth-death analysis proper (section "Analysis setup")
+# tutorial-1.md:172 - the algorithm is set explicitly to BDMCMC here
+python PyRate.py .../Canis_pbdb_data_PyRate.py -A 2
+# tutorial-1.md:180 - BDMCMC, HPP + Gamma preservation, first of the 10 age replicates
+python PyRate.py .../Canis_pbdb_data_PyRate.py -A 2 -mHPP -mG -j 1
+# tutorial-1.md:186 - longer run, sparser sampling: 20,000,000 iterations every 5,000 = 4,000 samples (tutorial-1.md:184-188)
+python PyRate.py .../Canis_pbdb_data_PyRate.py -mG -n 20000000 -s 5000
+
+# === 7. Summarize the run (section "Summarize the results") - details owned by ../pyrate-summarize-results
+# tutorial-1.md:211 - relative probabilities of BD models with different numbers of shifts
+python PyRate.py -mProb .../Canis_pbdb_data_mcmc.log -b 200
+# tutorial-1.md:218 - rates-through-time plot (an R script + a PDF); -plot2 gives the alternative flavour
+python PyRate.py -plot .../Canis_pbdb_data_marginal_rates.log -b 200
+# tutorial-1.md:227 - combine the mcmc logs of all replicates (no `python` prefix in the docs' line)
+PyRate.py -combLog path_to_your_log_files -tag mcmc -b 100
+# tutorial-1.md:233 - one RTT plot combining all replicates (no `python` prefix in the docs' line)
+PyRate.py -plot path_to_your_log_files -tag Canis_pbdb -b 100
+# tutorial-1.md:241 - TPP preservation rates through time (the shift-times file must be given again)
+PyRate.py -plotQ .../Canis_pbdb_data_mcmc.log -qShift epochs.txt -b 100
+
+# === 8. Speciation and extinction rates within FIXED time bins (a different analysis from section 6!)
+# tutorial-1.md:252 - number and placement of shifts fixed a priori; switches the rate priors to half-Cauchy
+python PyRate.py .../Canis_pbdb_data_PyRate.py -fixShift .../epochs.txt
+
+# === 9. Fixed shifts at the boundaries while searching for shifts between them (section heading at tutorial-1.md:263)
+# tutorial-1.md:267 - "`-edgeShift 18 2` sets fixed times of shifts at times 18 and 2"; "the algorithm will only search for shifts within this time range"
+python PyRate.py <data_set> -A 4 -edgeShift 18 2
+# tutorial-1.md:272 - the docs introduce this line as setting "only a max age boundary shift"
+python PyRate.py <data_set> -A 4 -edgeShift 18 0
+# tutorial-1.md:276 - the docs introduce this line as "a min age boundary shift"; what the literal `inf` means is never stated anywhere in the corpus
+python PyRate.py <data_set> -A 4 -edgeShift inf 0

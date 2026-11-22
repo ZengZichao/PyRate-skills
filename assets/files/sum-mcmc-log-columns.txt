@@ -1,0 +1,35 @@
+# source: PyRate-doc/PyRate-wiki/3.-Summarize-PyRate-results.md lines 11-12 | derived
+# (all line tags in this file are MIRROR lines = source page line + 8; the extra rows also draw on the mirrors
+#  ../pyrate-bd-analysis/references/tutorial-1.md:199 and ../pyrate-rjmcmc/references/tutorial-3.md:55, :110)
+# shows: the columns the documentation says are in a PyRate *_mcmc.log file, in the order the wiki lists them, with the analysis type that logs each one
+# WARNING: this is a *prose-derived inventory*, not a captured header line. No mirror of this corpus ever prints a
+#   literal header row or a data row of an _mcmc.log file, and nowhere is the physical column ORDER of the file stated.
+#   Column names below are copied byte-exactly from the sentences that define them; "order" is the order of mention in
+#   references/summarize-results.md:19-20 only. Do not parse a real log by these positions - read its own header line.
+# format: column-name | what it holds (doc wording) | logged when | source line
+#   in "logged when", "every analysis" means only that the page attaches NO condition to that token; it is not a documented
+#   promise that the column is present in every analysis (the page never enumerates the columns of a real log).
+posterior   | "the MCMC samples of the posterior"                          | every analysis        | summarize-results.md:19 (name "posterior" as a header only appears at ../pyrate-rjmcmc/references/tutorial-3.md:110, -col_tag)
+prior       | "prior"                                                      | every analysis        | summarize-results.md:19
+PP_lik      | "likelihoods of the preservation process"                    | every analysis        | summarize-results.md:19
+BD_lik      | "likelihoods of the preservation process and of the birth-death"                         | every analysis        | summarize-results.md:19-20 (the sentence breaks across the two lines)
+q_rate      | "the preservation rate"                                      | every analysis        | summarize-results.md:20
+alpha       | "the shape parameter of its gamma distributed heterogeneity"  | when -mG is used (not stated on this page) | summarize-results.md:20
+cov_sp      | "the parameters of the Covar model"                          | Covar analyses (not stated on this page) | summarize-results.md:20
+cov_ex      | "the parameters of the Covar model"                          | Covar analyses (not stated on this page) | summarize-results.md:20
+cov_q       | "the parameters of the Covar model"                          | Covar analyses (not stated on this page) | summarize-results.md:20
+k_birth     | "the number of sampled rate shifts"                          | "only logged in BDMCMC analyses" | summarize-results.md:20
+k_death     | "the number of sampled rate shifts"                          | "only logged in BDMCMC analyses" | summarize-results.md:20
+beta        | "the value of scaling factor used in TI analyses"            | -A 1 (TI) analyses     | summarize-results.md:20
+root_age    | "the time of origin of the oldest lineage"                    | every analysis        | summarize-results.md:20
+lambda_0, lambda_1, ... | "the speciation/ extinction rates between shifts"        | "only logged under fixed number of shifts, i.e. with -A 0 or -A 1" | summarize-results.md:20
+mu_0, mu_1, ...         | "the speciation/ extinction rates between shifts"        | "only logged under fixed number of shifts, i.e. with -A 0 or -A 1" | summarize-results.md:20
+shift_sp_1, ...         | "the times of rate shifts in speciation"         | "only logged with -A 0 or -A 1" | summarize-results.md:20
+shift_ex_1, ...         | "the times of rate shifts in speciation and extinction"     | "only logged with -A 0 or -A 1" | summarize-results.md:20
+tot_length  | "the total branch length"                                    | every analysis        | summarize-results.md:20
+*_TS        | "the times of speciation and extinction of all taxa in the data set"     | "if estimated" (wording only in tutorial-3.md:55) | summarize-results.md:20
+*_TE        | "the times of speciation and extinction of all taxa in the data set"     | "if estimated" (wording only in tutorial-3.md:55) | summarize-results.md:20
+q_0, q_1, ... q_n | "the preservation rates between shifts are indicated as" them, "from older to younger" | "When using the TPP model of preservation" - NOT on the summarize page; see ../pyrate-bd-analysis/references/tutorial-1.md:199 and ../pyrate-rjmcmc/references/tutorial-3.md:55 | tutorial-1.md:199
+death_age   | used as a column header by the -col_tag example              | not described anywhere in this corpus | ../pyrate-rjmcmc/references/tutorial-3.md:110
+# companion file: *_marginal_rates.log is described only as a "Tab-separated table with the posterior samples of the marginal rates of speciation, extinction, and net diversification, calculated within 1 time unit (typically Myr)"
+#   (summarize-results.md:23). Its column headers are not printed anywhere in the corpus.

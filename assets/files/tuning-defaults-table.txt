@@ -1,0 +1,64 @@
+# tuning-defaults-table.txt
+# source: transcribed by the pyrate-mcmc-tuning skill author from the four mirrors in
+#   ../pyrate-mcmc-tuning/references/ - nothing here comes from upstream example data, and no example data is
+#   quoted. EN pages: tutorial-6.md (titled "# PyRate - Advanced settings",
+#   :9 - the ONLY source of -fast_burnin, :12-14, and of the typed headings) and command-list.md
+#   (the command list: "### Advanced (BD)MCMC settings" :192-227, "### Tuning parameters" :230-269).
+#   CN pages: tutorial-6-cn.md and command-list-cn.md, the Chinese twins of the same two pages.
+#   Every "DOCUMENTED VALUE" below is a verbatim copy of a printed Example/prose line at the quoted
+#   line number, so any row can be re-checked in one grep (recipes in SKILL.md section 11).
+# Runnable: no runnable command line (this is a reference table). The offline check is
+#   sh assets/files/tuning-term-frequency-audit.sh
+# shows: every knob that controls how a PyRate (BD)MCMC moves - burnin, proposal windows, proposal
+#   frequencies and the advanced sampler settings - with its documented value, what it moves, and
+#   which -A analysis gates it.
+# Caveat: "no printed default" is a FINDING, not an omission here: command-list.md prints
+#   "Example: `-S 1000`" and "Example: `-p 1000`" WITHOUT the "(default)" tag every neighbouring
+#   command carries, and -thread / -j / -b / -n / -s state their default inside prose or with the
+#   tag. Do not promote those two example values to defaults.
+
+KNOB         DOCUMENTED VALUE (verbatim)                        DOCUMENTED LINE   EN/CN LINES          WHAT IT MOVES / GATE
+--- burnin and run size (command-list.md:45 "### Main analysis settings") ---
+-n           "Example:`-n 10000000`  (default)"                 command-list.md:58  cl:56-58 / cl-cn:57-59   total MCMC or BDMCMC generations
+-s           "Example: `-s 1000`  (default)"                    command-list.md:62  cl:60-62 / cl-cn:61-63   sampling frequency (which generations are logged)
+-p           "Example: `-p 1000`"  <- NO "(default)" tag        command-list.md:66  cl:64-66 / cl-cn:65-67   print-on-screen frequency (no effect on output files)
+-b           "Example: `-b 0`  (default; all samples are logged)"  command-list.md:71  cl:68-73 / cl-cn:69-74  iterations DISCARDED (not logged); 0<b<1 = fraction of -n
+-fast_burnin "(default: `-fast_burnin 0`)"                      tutorial-6.md:14    t6:12-14 / t6-cn:13-15   iterations run with an approximate Gibbs sampler on origination/extinction times
+                                                                                   grep -c fast_burnin command-list.md = 0  -> NOT listed in the command list at all
+-S           "Example: `-S 1000` "  <- NO "(default)" tag       command-list.md:227 cl:225-227 / cl-cn:224-226  generation at which BDMCMC STARTS updating the model (-A 2 only)
+-thread      "Examples: `-thread 0 0` (default; sequential likelihood calculation)"  command-list.md:77-78  cl:75-79 / cl-cn:76-80   threads for the BD likelihood and the NHPP likelihood
+
+--- tuning parameters (tutorial-6.md:17-55 repeated at command-list.md:230-269; I diffed the two
+    blocks - the prose matches except (i) -multiR's "(default)" sits in tutorial-6.md:19's sentence
+    and on command-list.md:233's Example line, (ii) tutorial-6.md:19 names -tR bare where
+    command-list.md:232 links it, (iii) only tutorial-6 types -multiR <-boolean> and -tT <-float>) ---
+-multiR      "Example: `-multiR 1` (default)"                   tutorial-6.md:18-19 / command-list.md:231-233   speciation + extinction RATES: 0 = sliding window, 1 = multiplier
+-tT          "Example: `-tT 1` (default)"                       tutorial-6.md:21-23 / command-list.md:235-237   speciation/extinction TIMES (uniform sliding window)
+-nT          "Example: `-nT 5` (default)"                       tutorial-6.md:25-27 / command-list.md:239-241   max number of times updated at a time; 0 -> times = first/last appearances + HPP
+-tQ          "Example: `-tQ 1.2 1.2` (default)"                 tutorial-6.md:29-31 / command-list.md:243-245   preservation rate q and gamma shape alpha (multiplier proposals); alpha exists under -mG
+-tR          "Example: `-tR 0.05` (default)"                    tutorial-6.md:33-35 / command-list.md:247-249   window size of the rate updates - multiplier OR sliding-window, per -multiR
+-tS          "Example: `-tS 1` (default)"                       tutorial-6.md:37-39 / command-list.md:251-253   shift TIMES of speciation/extinction rates (uniform sliding window)
+-fS          "Example: `-fS 0.7` (default)"                     tutorial-6.md:41-43 / command-list.md:255-257   how often shift times vs rates are updated; forced to 0 with no sampled/fixed shifts
+-tC          "Example: `-tC 0.025 0.025 0.1` (default)"         tutorial-6.md:45-47 / command-list.md:259-261   Covar correlation parameters (cov with speciation, extinction, preservation)
+-fU          "Example:` -fU 0.02 0.18 0.08` (default under Covar model; ... 72%)"  tutorial-6.md:49-51 / cl:263-265  update frequencies: preservation, birth-death, Covar; remainder = times
+-fR          "Example: `-fR 1` (default)"                       tutorial-6.md:53-55 / command-list.md:267-269   fraction of birth-death rates updated at a time (frequency from -fU)
+
+--- advanced (BD)MCMC settings (command-list.md:192-227 ONLY - tutorial-6.md has zero matches) ---
+-r           "Example: `-r 4` (for 1 cold and 3 heated chains)"  command-list.md:195  cl:193-195 / cl-cn:192-194  MC3 heated chains incl. the cold one; "-A 0" only
+-t           "Example: `-t 0.03` (default)"                     command-list.md:199  cl:197-199 / cl-cn:196-198   MC3 temperature; "-r >1" only
+-sw          "Example: `-sw 100` (default)"                     command-list.md:203  cl:201-203 / cl-cn:200-202   MC3 swap attempt frequency; "-r >1" only
+-k           "Example: `-k 10` (default)"                       command-list.md:207  cl:205-207 / cl-cn:204-206   TI scaling points; "-A 1" only
+-a           "Example: `-a 0.3` (default)"                      command-list.md:211  cl:209-211 / cl-cn:208-210   beta shape of the TI scaling points; "-A 1" only
+-M           "Example: `-M 25` (default)"                       command-list.md:215  cl:213-215 / cl-cn:212-214   BDMCMC model-update frequency; "-A 2" only
+-B           "Example: `-B 1` (default)"                        command-list.md:219  cl:217-219 / cl-cn:216-218   BDMCMC shift-proposal birth rate = Poisson prior shape on the number of rates; "-A 2" only
+-T           "Example: `-T 1` (default)"                        command-list.md:223  cl:221-223 / cl-cn:220-222   time spent updating the model in BDMCMC; "-A 2" only
+
+--- values that are NOT this skill's knobs but bound a tuned run (do not "fix" them here) ---
+-N           "Example: `-N 24`"  (no default printed)           command-list.md:162-164  cl-cn:162-164   extant diversity conditioning the BD hyperprior; "-N -1" -> gamma prior
+-pL          "Example: `-pL 1.1 1.1`(default)"                  command-list.md:166-168  cl-cn:166-168   gamma prior shape+scale, speciation rate; used only if -N -1
+-pM          "Example: `-pL 1.1 1.1` (default)"  <- the line under `-pM` PRINTS -pL  command-list.md:170-172  cl-cn:170-172   gamma prior shape+scale, extinction rate
+-pP          "Example: `-pP 1.5 1` (default)"                   command-list.md:178-180  cl-cn:177-179   gamma prior shape+scale, preservation rate
+-pS          "Example: `-pS 2.5` (default)"                     command-list.md:182-184  cl-cn:181-183   Dirichlet shape on shift-time frame lengths; -pS 1 = uniform
+-pC          "Example: `-pC 1` (default)"                       command-list.md:186-188  cl-cn:185-187   SD of the Normal prior on Covar correlations; 0 -> Gamma(2,2) hyperprior
+-cauchy      "Default `-cauchy -1 -1` is applied when different priors are used (e.g. Gamma)."  command-list.md:174-176  cl-cn:174-175  half-Cauchy scales; "-cauchy 0 0" = estimated, and it is the automatic setting under -fixShift
+-ncat        "Example: -ncat 4  (default)"                      command-list.md:100-102  cl-cn:100-102   gamma preservation categories; "-mG" only

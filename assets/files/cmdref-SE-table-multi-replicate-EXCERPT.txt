@@ -1,0 +1,14 @@
+# source: format per ../pyrate-command-reference/references/command-list.md:18 (the extra-column rule for -d); values SYNTHETIC
+# shows: -d with several estimates per species - "If multiple estimates for these values are available ... these can be provided as additional columns (e.g. 5th column for a second estimate of origination times, 6th column for a second estimate of extinction times)", and the replicate actually read is picked with -j (:18, :27)
+# note: SYNTHETIC - all six columns and every value are invented placeholders, including the header words
+#       `clade species ts te ts2 te2` (the corpus never names them). This file is an EXCERPT in the sense that only
+#       four species are shown; a real table carries one row per species. The first four columns are NOT a verbatim
+#       slice of an upstream file: example_files/Ursidae_SE.txt is not part of this corpus and was never readable
+#       here, and the four columns match the sibling fixture ../cmdref-SE-table.txt, which is itself synthetic.
+#       An earlier revision of this header claimed the first four columns were "verbatim Ursidae_SE.txt rows 2-5";
+#       that was fabricated and has been removed. See ../README.md.
+clade	species	ts	te	ts2	te2
+0.0	1.0	7.8881825258179141	2.0002386149949514	8.10	2.00
+0.0	2.0	10.812986654757669	5.7700167563777214	10.50	6.00
+0.0	3.0	6.8052461639722184	1.0714309776448647	6.90	1.20
+0.0	4.0	4.1672548258260411	3.0132231208179259	4.00	3.10

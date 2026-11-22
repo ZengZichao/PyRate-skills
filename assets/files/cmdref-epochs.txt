@@ -1,0 +1,41 @@
+# source: format per ../pyrate-command-reference/references/command-list.md:124-125 (-fixShift, "simply a text file with the ages at which the rate shifts should be fixed") and ../pyrate-bd-analysis/references/tutorial-1.md:249 (names example_files/epochs.txt); values SYNTHETIC
+# shows: the shape a -fixShift <file> argument points at - plain text, one fixed rate-shift age in Myr per line; here the same Phanerozoic series used by cmdref-epochs_q.txt without its 0.0117 line
+# note: SYNTHETIC - the ages are written for this fixture. The upstream example_files/epochs.txt that the docs NAME
+#       is not included in this corpus and was never readable here, so its contents, line count, sort order and
+#       header convention are unknown; the docs print no rule for any of them. tutorial-1.md:241 also passes
+#       "epochs.txt" to -qShift while the very next line (:243) names epochs_q.txt as the rate-shift file, so which
+#       of the two upstream files carries which list is genuinely unresolved in the docs - verify on your own
+#       PyRate checkout before treating the two fixtures as interchangeable.
+#       Earlier revisions of this header claimed verbatim upstream provenance and "30 lines"; both were fabricated
+#       and have been removed. See ../README.md.
+2.58
+5.333
+23.03
+33.9
+56.0
+66.0
+100.5
+145.0
+163.5
+174.1
+201.3
+237
+247.2
+252.17
+259.8
+272.3
+298.9
+323.2
+358.9
+382.7
+393.3
+419.2
+423.0
+427.4
+433.4
+443.8
+458.4
+470.0
+485.4
+497
+541.0

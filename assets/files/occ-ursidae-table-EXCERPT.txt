@@ -1,0 +1,11 @@
+# source: PyRate-doc/PyRate-wiki/1.-Preparing-input-file.md lines 8-15 (= references/preparing-input-file.md lines 16-23) | derived
+# shows: the wiki's "typical input file" - a tab-delimited occurrence table with a header row, the four mandatory columns (species name, status extinct/extant, MinT, MaxT) and the optional 5th Trait column where missing = NA
+# derived: the wiki wraps every row in backticks, pads the fields with extra tabs and leading spaces, and ends the table with a literal "..." row (mirror line 24) marking truncation - hence EXCERPT; the values are unchanged, separators are normalised to single tabs, the "..." row is dropped
+Species	Status	MinT	MaxT	Trait
+Ursus_etruscus	extinct	1.9	2.6	90
+Ursus_etruscus	extinct	1.2	1.8	90
+Ursus_etruscus	extinct	2.6	3.4	90
+Agriotherium_insigne	extinct	4.2	5.3	285
+Ursavus_brevirhinus	extinct	8.2	9.0	80
+Ursavus_brevirhinus	extinct	11.2	15.2	80
+Agriotherium_intermedium	extinct	3.4	4.2	NA
